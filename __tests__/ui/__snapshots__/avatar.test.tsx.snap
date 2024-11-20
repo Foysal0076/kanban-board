@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar matches snapshot 1`] = `
+<div>
+  <div
+    class="relative flex h-8 w-8 items-center justify-center rounded-full border bg-card text-sm font-bold text-card-foreground"
+    data-testid="avatar"
+  >
+    <span
+      class="text-inherit"
+    >
+      JD
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Avatar matches snapshot with image 1`] = `
+<div>
+  <div
+    class="relative flex h-8 w-8 items-center justify-center rounded-full border bg-card text-sm font-bold text-card-foreground"
+    data-testid="avatar"
+  >
+    <img
+      alt="John Doe"
+      class="rounded-full object-cover"
+      data-nimg="fill"
+      decoding="async"
+      loading="lazy"
+      src="/images/user-circle.svg"
+      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+    />
+  </div>
+</div>
+`;

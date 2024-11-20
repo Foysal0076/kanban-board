@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders all variants and sizes 1`] = `
+<div>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Default
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Destructive
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Outline
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Secondary
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Ghost
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform text-primary underline-offset-4 hover:underline h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Link
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2"
+  >
+    <div
+      class="visible"
+    >
+      Default Size
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-primary text-primary-foreground shadow hover:bg-primary/90 h-8 rounded-md px-3 text-xs"
+  >
+    <div
+      class="visible"
+    >
+      Small
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 rounded-md px-8"
+  >
+    <div
+      class="visible"
+    >
+      Large
+    </div>
+  </button>
+  <button
+    class="relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95 transition-transform bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 w-9"
+  >
+    <div
+      class="visible"
+    >
+      Icon
+    </div>
+  </button>
+</div>
+`;

@@ -1,0 +1,36 @@
+
+export FORCE_COLOR=1
+pnpm  lint-staged
+pnpm check-types ||
+(
+  echo "❌❌❌ Type check failed ❌❌❌"
+  exit 1
+)
+
+# If you check coverage the pnpm test is redundant, since coverage script runs the tests
+#pnpm test ||
+#(
+#  echo "❌❌❌ Tests failed ❌❌❌"
+#  exit 1
+#)
+
+pnpm test:coverage:silent ||
+(
+  echo "❌❌❌ Test coverage check failed ❌❌❌"
+  exit 1
+)
+
+# If everyting passes... try to run a build
+echo '✅✅✅ Allright...Code looks good...✅✅✅'
+#echo '✅✅✅ Allright...Code looks good...Trying to build now...✅✅✅'
+
+#pnpm build ||
+#(
+#  echo "❌❌❌ Build failed ❌❌❌"
+#  echo "⚠️ ⚠️ ⚠️ Next build failed: View the errors above to see what went wrong ⚠️ ⚠️ ⚠️"
+#  exit 1
+#)
+
+#IF it builds we can commit
+#echo "✅✅✅ Build successful ✅✅✅"
+echo "🎉🎉🎉 Committing now... 🎉🎉🎉"
