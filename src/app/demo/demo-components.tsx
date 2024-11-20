@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 
 import { Button, Input, Textarea } from '@/components/ui'
@@ -96,6 +97,17 @@ export default function DemoComponents() {
         <h4 className='h4'>H4 Hello World </h4>
         <h5 className='h5'>H5 Hello World </h5>
         <h6 className='h6'>H6 Hello World </h6>
+      </div>
+
+      <div>
+        <h2>Kanban Logo</h2>
+        <Image
+          src='/images/kanban-logo.svg'
+          height={192}
+          width={192}
+          alt='logo'
+          className='object-contain'
+        />
       </div>
     </div>
   )

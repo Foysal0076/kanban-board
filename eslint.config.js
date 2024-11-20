@@ -30,7 +30,7 @@ export default [...compat.extends("next/core-web-vitals"), {
   },
 
   rules: {
-    "no-unused-vars": 1,
+    "no-unused-vars": ['warn', { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_", "destructuredArrayIgnorePattern": "^_", "caughtErrorsIgnorePattern": "^_" }],
     "no-console": 1,
     "jsx-a11y/alt-text": 2,
     "react/react-in-jsx-scope": 0,

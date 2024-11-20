@@ -8,6 +8,7 @@ import FaviconLinks from '@/components/fav-icon-links'
 import { Footer } from '@/components/footer'
 import Navbar from '@/components/navigation/navbar'
 import RouteProgressBar from '@/components/route-progress-bar'
+import { SeedMockData } from '@/components/seed-mock-data'
 import NextThemeProvider from '@/components/theme/next-theme-provider'
 import { AuthProvider } from '@/features/auth/auth-provider'
 import { metaObject } from '@/shared/config/site.config'
@@ -30,6 +31,7 @@ export default function RootLayout({
       <FaviconLinks />
       <body suppressHydrationWarning>
         <AuthProvider>
+          <SeedMockData />
           <RouteProgressBar />
           <NextThemeProvider>
             <div className='flex min-h-screen flex-col justify-between pt-[var(--navbar-height)] md:pt-[var(--navbar-height-md)]'>

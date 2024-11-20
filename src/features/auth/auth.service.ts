@@ -1,6 +1,9 @@
 /* eslint-disable */
 
+import { STORAGE_KEYS } from '@/shared/config/constants'
 import { pageRoutes } from '@/shared/config/page-routes'
+import { SessionUser, User } from '@/types/session-user.type'
+import { generateID, getLocalStorage, setLocalStorage } from '@/utils'
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -25,9 +28,40 @@ export const authenticateUser = async (
   return null
 }
 
-export const createUser = async (user: any) => {
-  // implement create user logic here
-  return dummyUser
+export const createUser = async (user: Omit<User, 'id'>): Promise<User> => {
+  try {
+    // Get existing users from localStorage
+    const existingUsers = getLocalStorage<User[]>(STORAGE_KEYS.USERS) || []
+
+    // Check if email already exists
+    const emailExists = existingUsers.some((u) => u.email === user.email)
+    if (emailExists) {
+      throw new Error('Email already exists')
+    }
+
+    // Add new user to the array
+    const newUser = { ...user, id: generateID() }
+    const newUsers = [...existingUsers, newUser]
+
+    // Save updated users array to localStorage
+    const success = setLocalStorage(STORAGE_KEYS.USERS, newUsers)
+
+    if (!success) {
+      throw new Error('Failed to create user')
+    }
+
+    return newUser
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message)
+    }
+    throw new Error('Failed to create user')
+  }
+}
+
+export const getUserByEmail = (email: string): User | null => {
+  const users = getLocalStorage<User[]>(STORAGE_KEYS.USERS) || []
+  return users.find((user) => user.email === email) || null
 }
 
 export const authOptions: NextAuthOptions = {
@@ -47,14 +81,16 @@ export const authOptions: NextAuthOptions = {
         credentials: Record<'email' | 'password', string> | undefined
       ) {
         // Add logic here to look up the user from the credentials supplied
-        const { email, password } = credentials as {
+        const { email, name, role, id } = credentials as {
+          id: string
           email: string
           password: string
+          name: string
+          role: string
         }
-        if (email && password) {
+        if (email && name && role && id) {
           // Update the id property to be of type string
-          const user = await authenticateUser(credentials)
-          return user
+          return { email, name, role, id } as SessionUser
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null

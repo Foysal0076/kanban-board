@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
+import { getUserByEmail } from '@/features/auth/auth.service'
 import {
   LoginFormSchema,
   loginFormSchema,
@@ -23,8 +24,8 @@ export const useLoginForm = () => {
     resolver: zodResolver(loginFormSchema),
     mode: 'all',
     defaultValues: {
-      email: 'admin@test.com',
-      password: 'admin',
+      email: 'johndoe@test.com',
+      password: 'Test1234',
     },
   })
 
@@ -32,17 +33,23 @@ export const useLoginForm = () => {
     try {
       setLoading(true)
 
+      const user = getUserByEmail(data.email)
+
+      if (!user || user.password !== data.password) {
+        throw new Error('Invalid credentials')
+      }
+
       const res = await signIn('credentials', {
-        email: data.email,
-        password: data.password,
+        ...user,
         redirect: false,
       })
+
       if (res?.status === 200) {
-        router.push(pageRoutes.dashboard)
+        router.push(pageRoutes.home)
       } else if (res?.status === 401) {
         throw new Error('Invalid credentials')
       } else {
-        throw new Error(res?.error || 'Something went wrong')
+        throw new Error(res?.error ?? 'Something went wrong')
       }
     } catch (error: any) {
       toast.error(error.message)

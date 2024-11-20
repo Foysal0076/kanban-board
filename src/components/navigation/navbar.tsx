@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
+import AppLogo from '@/components/app-logo'
 import NavDrawerMenu from '@/components/navigation/nav-drawer/nav-drawer-menu'
 import ThemeSwitch from '@/components/theme/theme-switch'
 import NavbarAuthMenu from '@/features/auth/navbar-auth-menu'
@@ -14,9 +14,9 @@ export default function Navbar() {
       <nav
         className='flex w-full items-center justify-between px-4 md:px-8'
         aria-label='Main navigation'>
-        <div className='tracking-tighter'>
+        <div className=''>
           <Link href={pageRoutes.home}>
-            <Image
+            {/* <Image
               src='/images/site-logo-light.svg'
               className='block dark:hidden'
               alt='Logo Light'
@@ -32,10 +32,11 @@ export default function Navbar() {
               width={153}
               height={26}
               priority
-            />
+            /> */}
+            <AppLogo />
           </Link>
         </div>
-        <div className='flex gap-4'>
+        <div className='flex items-center gap-4'>
           <ThemeSwitch />
           <NavbarAuthMenu />
           <div className='flex md:hidden'>
