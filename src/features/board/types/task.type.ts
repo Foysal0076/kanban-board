@@ -5,8 +5,8 @@ export type Task = {
   id: string
   boardId: string
   title: string
-  description: string
-  isCompleted: boolean
+  description?: string
+  status: string
   assignee: ShortUserInfo
   subtasks: Subtask[]
   createdAt: Date
