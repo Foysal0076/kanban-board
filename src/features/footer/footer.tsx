@@ -1,4 +1,4 @@
-import CopyrightText from '@/components/footer/copyright-text'
+import CopyrightText from '@/components/copyright-text'
 
 export const Footer = () => {
   return (

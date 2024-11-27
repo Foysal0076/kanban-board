@@ -5,13 +5,13 @@ import { Inter } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
 import FaviconLinks from '@/components/fav-icon-links'
-import { Footer } from '@/components/footer'
 import GlobalModal from '@/components/modal/global-modal'
-import Navbar from '@/components/navigation/navbar'
 import RouteProgressBar from '@/components/route-progress-bar'
 import { SeedMockData } from '@/components/seed-mock-data'
 import NextThemeProvider from '@/components/theme/next-theme-provider'
 import { AuthProvider } from '@/features/auth/auth-provider'
+import { Footer } from '@/features/footer'
+import Navbar from '@/features/navigation/navbar'
 import { metaObject } from '@/shared/config/site.config'
 
 const inter = Inter({

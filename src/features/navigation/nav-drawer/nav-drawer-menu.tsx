@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 
-import { DrawerContent } from '@/components/navigation/nav-drawer/drawer-content'
-import { HamburgerMenu } from '@/components/navigation/nav-drawer/hamburger-menu'
+import { DrawerContent } from '@/features/navigation/nav-drawer/drawer-content'
+import { HamburgerMenu } from '@/features/navigation/nav-drawer/hamburger-menu'
 
 export default function NavDrawerMenu() {
   const [isOpen, setIsOpen] = useState(false)

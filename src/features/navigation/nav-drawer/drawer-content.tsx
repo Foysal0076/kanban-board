@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import CopyrightText from '@/components/footer/copyright-text'
+import CopyrightText from '@/components/copyright-text'
 import AuthButtons from '@/features/auth/auth-buttons'
 import { useAuth } from '@/hooks/use-auth'
 
