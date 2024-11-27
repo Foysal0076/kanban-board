@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast'
 
 import FaviconLinks from '@/components/fav-icon-links'
 import { Footer } from '@/components/footer'
+import GlobalModal from '@/components/modal/global-modal'
 import Navbar from '@/components/navigation/navbar'
 import RouteProgressBar from '@/components/route-progress-bar'
 import { SeedMockData } from '@/components/seed-mock-data'
@@ -34,6 +35,7 @@ export default function RootLayout({
           <SeedMockData />
           <RouteProgressBar />
           <NextThemeProvider>
+            <GlobalModal />
             <div className='flex min-h-screen flex-col justify-between pt-[var(--navbar-height)] md:pt-[var(--navbar-height-md)]'>
               <div>
                 <Navbar />

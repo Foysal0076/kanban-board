@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+import ModalDemo from '@/app/demo/modal-demo'
 import { Button, Input, Textarea } from '@/components/ui'
 import { EnvelopeIcon, KeyIcon } from '@/icons'
 
@@ -109,6 +110,7 @@ export default function DemoComponents() {
           className='object-contain'
         />
       </div>
+      <ModalDemo />
     </div>
   )
 }

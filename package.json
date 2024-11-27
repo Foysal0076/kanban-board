@@ -33,9 +33,11 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1",
+    "react-transition-group": "^4.4.5",
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.4",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -49,6 +51,7 @@
     "@types/node": "^22.9.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-transition-group": "^4.4.11",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "eslint": "^9.15.0",
