@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+import MenuDemo from '@/app/demo/menu-demo'
 import ModalDemo from '@/app/demo/modal-demo'
 import { Button, Input, Textarea } from '@/components/ui'
 import { EnvelopeIcon, KeyIcon } from '@/icons'
@@ -111,6 +112,7 @@ export default function DemoComponents() {
         />
       </div>
       <ModalDemo />
+      <MenuDemo />
     </div>
   )
 }
