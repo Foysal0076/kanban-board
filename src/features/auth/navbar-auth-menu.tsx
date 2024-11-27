@@ -4,9 +4,9 @@ import { signOut } from 'next-auth/react'
 
 import { SignOutIcon } from '@/components/icons'
 import { Avatar, Spinner } from '@/components/ui'
+import { pageRoutes } from '@/config/page-routes'
 import AuthButtons from '@/features/auth/auth-buttons'
 import { useAuth } from '@/hooks/use-auth'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 const NavbarAuthMenu = () => {
   // const { theme, setTheme } = useTheme()

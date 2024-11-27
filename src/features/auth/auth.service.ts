@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import { STORAGE_KEYS } from '@/shared/config/constants'
-import { pageRoutes } from '@/shared/config/page-routes'
+import { STORAGE_KEYS } from '@/config/constants'
+import { pageRoutes } from '@/config/page-routes'
 import { SessionUser, User } from '@/types/session-user.type'
 import { generateID, getLocalStorage, setLocalStorage } from '@/utils'
 import { NextAuthOptions } from 'next-auth'

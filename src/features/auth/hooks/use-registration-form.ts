@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
+import { pageRoutes } from '@/config/page-routes'
 import { createUser } from '@/features/auth/auth.service'
 import {
   RegistrationFormSchema,
   registrationFormSchema,
 } from '@/features/auth/validators/registration-form.schema'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 export const useRegistrationForm = () => {
   const [loading, setLoading] = useState(false)

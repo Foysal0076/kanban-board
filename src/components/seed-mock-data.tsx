@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react'
 
-import { STORAGE_KEYS } from '@/shared/config/constants'
-import { USERS } from '@/shared/config/mock-data'
+import { STORAGE_KEYS } from '@/config/constants'
+import { USERS } from '@/config/mock-data'
 import { User } from '@/types/session-user.type'
 import { getLocalStorage, setLocalStorage } from '@/utils'
 

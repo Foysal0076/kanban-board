@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 
+import { pageRoutes } from '@/config/page-routes'
 import { authOptions } from '@/features/auth/auth.service'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 export default async function PrivateRouteLayout({
   children,

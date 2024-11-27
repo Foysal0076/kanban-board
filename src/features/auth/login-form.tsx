@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
 import { Button, Input } from '@/components/ui'
+import { pageRoutes } from '@/config/page-routes'
 import { useLoginForm } from '@/features/auth/hooks/use-login-form'
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, KeyIcon } from '@/icons'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 const LoginForm = () => {
   const { handleSubmit, onsubmit, errors, register, loading } = useLoginForm()

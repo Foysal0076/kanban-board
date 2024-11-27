@@ -9,10 +9,10 @@ import GlobalModal from '@/components/modal/global-modal'
 import RouteProgressBar from '@/components/route-progress-bar'
 import { SeedMockData } from '@/components/seed-mock-data'
 import NextThemeProvider from '@/components/theme/next-theme-provider'
+import { metaObject } from '@/config/site.config'
 import { AuthProvider } from '@/features/auth/auth-provider'
 import { Footer } from '@/features/footer'
 import Navbar from '@/features/navigation/navbar'
-import { metaObject } from '@/shared/config/site.config'
 
 const inter = Inter({
   subsets: ['latin'],

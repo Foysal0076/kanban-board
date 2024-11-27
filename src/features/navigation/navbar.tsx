@@ -2,9 +2,9 @@ import Link from 'next/link'
 
 import AppLogo from '@/components/app-logo'
 import ThemeSwitch from '@/components/theme/theme-switch'
+import { pageRoutes } from '@/config/page-routes'
 import NavbarAuthMenu from '@/features/auth/navbar-auth-menu'
 import NavDrawerMenu from '@/features/navigation/nav-drawer/nav-drawer-menu'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 export default function Navbar() {
   return (

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Button } from '@/components/ui'
-import { pageRoutes } from '@/shared/config/page-routes'
+import { pageRoutes } from '@/config/page-routes'
 import { cn } from '@/utils'
 
 type Props = {

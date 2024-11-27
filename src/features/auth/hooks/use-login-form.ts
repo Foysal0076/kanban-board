@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
+import { pageRoutes } from '@/config/page-routes'
 import { getUserByEmail } from '@/features/auth/auth.service'
 import {
   LoginFormSchema,
   loginFormSchema,
 } from '@/features/auth/validators/login-form.schema'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 export const useLoginForm = () => {
   const [loading, setLoading] = useState(false)

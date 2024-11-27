@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 
 import AppLogo from '@/components/app-logo'
+import { pageRoutes } from '@/config/page-routes'
 import { authOptions } from '@/features/auth/auth.service'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 type Props = {
   children: React.ReactNode

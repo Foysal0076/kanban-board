@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 
 import { Button, Input } from '@/components/ui'
+import { pageRoutes } from '@/config/page-routes'
 import { useRegistrationForm } from '@/features/auth/hooks/use-registration-form'
 import { EnvelopeIcon, EyeIcon, EyeSlashIcon, KeyIcon, UserIcon } from '@/icons'
-import { pageRoutes } from '@/shared/config/page-routes'
 
 const RegistrationForm = () => {
   const { handleSubmit, onsubmit, errors, register, loading } =
