@@ -9,12 +9,12 @@ import NavDrawerMenu from '@/features/navigation/nav-drawer/nav-drawer-menu'
 export default function Navbar() {
   return (
     <header
-      className='fixed top-0 z-40 flex h-[var(--navbar-height)] w-full items-center border-b border-border/30 bg-card backdrop-blur-md md:h-[var(--navbar-height-md)]'
+      className='fixed top-0 z-40 flex h-[var(--navbar-height)] w-full items-center border-b bg-card backdrop-blur-md md:h-[var(--navbar-height-md)]'
       aria-label='Main navigation'>
       <nav
-        className='flex w-full items-center justify-between px-4 md:px-8'
+        className='flex h-full w-full items-center'
         aria-label='Main navigation'>
-        <div className=''>
+        <div className='flex min-h-full w-[calc(var(--left-sidebar-width))] items-center border-r px-4 md:px-8'>
           <Link href={pageRoutes.home}>
             {/* <Image
               src='/images/site-logo-light.svg'
@@ -36,11 +36,15 @@ export default function Navbar() {
             <AppLogo />
           </Link>
         </div>
-        <div className='flex items-center gap-4'>
-          <ThemeSwitch />
-          <NavbarAuthMenu />
-          <div className='flex md:hidden'>
-            <NavDrawerMenu />
+
+        <div className='flex grow items-center justify-between gap-4 px-4 md:px-8'>
+          <div></div>
+          <div className='flex items-center'>
+            <ThemeSwitch />
+            <NavbarAuthMenu />
+            <div className='flex md:hidden'>
+              <NavDrawerMenu />
+            </div>
           </div>
         </div>
       </nav>

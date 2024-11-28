@@ -70,6 +70,9 @@ export default {
         DEFAULT: 'var(--box-shadow)',
         top: 'var(--box-shadow-top)',
       },
+      width: {
+        'left-sidebar': 'var(--left-sidebar-width)',
+      },
     },
   },
   plugins: [

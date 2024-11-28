@@ -48,7 +48,7 @@ const LoginForm = () => {
         onSubmit={handleSubmit(onsubmit)}>
         <Input
           label='Email'
-          placeholder='admin@test.com'
+          placeholder='johnsnow@test.com'
           {...register('email')}
           error={errors?.email ? errors.email.message : ''}
           startAdornment={{
@@ -59,7 +59,7 @@ const LoginForm = () => {
         <Input
           type={passwordType}
           label='Password'
-          placeholder='admin'
+          placeholder='Test1234'
           {...register('password')}
           error={errors?.password ? errors.password.message : ''}
           startAdornment={{

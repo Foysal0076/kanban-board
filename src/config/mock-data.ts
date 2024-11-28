@@ -84,6 +84,8 @@ export const MOCK_BOARDS: Board[] = [
     owner: MOCK_USERS[0],
     invitees: [MOCK_USERS[1], MOCK_USERS[2], MOCK_USERS[3]],
     columns: ['To Do', 'In Progress', 'Done'],
+    createdAt: new Date('2023-01-01T10:00:00Z'),
+    updatedAt: new Date('2023-01-02T10:00:00Z'),
   },
   {
     id: '2',
@@ -92,6 +94,8 @@ export const MOCK_BOARDS: Board[] = [
     owner: MOCK_USERS[0],
     invitees: [MOCK_USERS[3], MOCK_USERS[4], MOCK_USERS[5]],
     columns: ['To Do', 'In Progress', 'Done'],
+    createdAt: new Date('2023-01-01T10:00:00Z'),
+    updatedAt: new Date('2023-01-02T10:00:00Z'),
   },
 ]
 

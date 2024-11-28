@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 
 import { pageRoutes } from '@/config/page-routes'
 import { authOptions } from '@/features/auth/auth.service'
+import RefreshUserData from '@/features/board/refresh-user-data'
 
 export default async function PrivateRouteLayout({
   children,
@@ -13,5 +14,10 @@ export default async function PrivateRouteLayout({
   if (!session) {
     redirect(pageRoutes.login)
   }
-  return <>{children}</>
+  return (
+    <>
+      <RefreshUserData />
+      {children}
+    </>
+  )
 }
