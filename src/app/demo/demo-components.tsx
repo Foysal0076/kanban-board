@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 import MenuDemo from '@/app/demo/menu-demo'
 import ModalDemo from '@/app/demo/modal-demo'
+import TaskCardsDemo from '@/app/demo/task-card-demo'
 import { Button, Input, Textarea } from '@/components/ui'
 import { EnvelopeIcon, KeyIcon } from '@/icons'
 
@@ -17,6 +18,7 @@ export default function DemoComponents() {
 
   return (
     <div className='container flex flex-col gap-4 py-6 md:gap-6'>
+      <TaskCardsDemo />
       <div className='flex flex-wrap gap-4'>
         <div className='h-28 w-28 rounded-default border bg-card shadow' />
         <div className='h-28 w-28 rounded-sm border bg-card shadow-sm' />

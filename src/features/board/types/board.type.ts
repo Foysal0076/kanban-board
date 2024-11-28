@@ -7,6 +7,7 @@ export type Board = {
   owner: ShortUserInfo
   invitees: ShortUserInfo[]
   columns: string[]
+  isArchived?: boolean
 }
 
 export type ShortBoardInfo = { id: string; title: string }

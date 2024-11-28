@@ -11,7 +11,7 @@ export default async function PrivateRouteLayout({
 }) {
   const session = await getServerSession(authOptions)
   if (!session) {
-    redirect(pageRoutes.home)
+    redirect(pageRoutes.login)
   }
   return <>{children}</>
 }
