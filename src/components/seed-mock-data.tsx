@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 
 import { STORAGE_KEYS } from '@/config/constants'
-import { USERS } from '@/config/mock-data'
+import { MOCK_USERS } from '@/config/mock-data'
 import { User } from '@/types/session-user.type'
 import { getLocalStorage, setLocalStorage } from '@/utils'
 
@@ -12,7 +12,7 @@ export const SeedMockData = () => {
     //check if users already exist in localStorage
     const users = getLocalStorage<User[]>(STORAGE_KEYS.USERS)
     if (!users || users.length === 0) {
-      setLocalStorage(STORAGE_KEYS.USERS, USERS)
+      setLocalStorage(STORAGE_KEYS.USERS, MOCK_USERS)
     }
   }, [])
 
