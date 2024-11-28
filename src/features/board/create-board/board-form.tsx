@@ -7,7 +7,7 @@ import { Board } from '@/features/board/types/board.type'
 import { PlusIcon } from '@/icons'
 
 type Props = {
-  initialData?: Board
+  initialData?: Board | null
 }
 
 export default function BoardForm({ initialData }: Props) {

@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
-import AppLogo from '@/components/app-logo'
 import ThemeSwitch from '@/components/theme/theme-switch'
 import { pageRoutes } from '@/config/page-routes'
 import NavbarAuthMenu from '@/features/auth/navbar-auth-menu'
-import NavDrawerMenu from '@/features/navigation/nav-drawer/nav-drawer-menu'
+import { BoardMenu } from '@/features/board/board-menu'
+import { AppIcon } from '@/icons'
 
 export default function Navbar() {
   return (
@@ -14,7 +14,7 @@ export default function Navbar() {
       <nav
         className='flex h-full w-full items-center'
         aria-label='Main navigation'>
-        <div className='flex min-h-full w-[calc(var(--left-sidebar-width))] items-center border-r px-4 md:px-8'>
+        <div className='flex min-h-full items-center px-4 md:w-[calc(var(--left-sidebar-width))] md:border-r md:px-8'>
           <Link href={pageRoutes.home}>
             {/* <Image
               src='/images/site-logo-light.svg'
@@ -33,18 +33,25 @@ export default function Navbar() {
               height={26}
               priority
             /> */}
-            <AppLogo />
+            <div className='flex items-center justify-center gap-2 tracking-tighter text-primary'>
+              <AppIcon className='h-6 w-6 md:h-[1.625rem] md:w-[1.625rem]' />
+              <h1 className='text-[1.75rem] font-semibold leading-none text-foreground max-sm:hidden md:text-[2.125rem]'>
+                kanban
+              </h1>
+            </div>
           </Link>
         </div>
 
-        <div className='flex grow items-center justify-between gap-4 px-4 md:px-8'>
-          <div></div>
+        <div className='flex grow items-center justify-between gap-4 pr-4 md:px-8'>
+          <div>
+            <BoardMenu />
+          </div>
           <div className='flex items-center'>
             <ThemeSwitch />
             <NavbarAuthMenu />
-            <div className='flex md:hidden'>
+            {/* <div className='flex md:hidden'>
               <NavDrawerMenu />
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>

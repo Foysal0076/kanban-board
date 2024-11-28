@@ -18,7 +18,7 @@ export default function BoardListItem({
     <Link
       href={href}
       className={cn(
-        'mb-1 flex w-full items-center gap-3 rounded-l-none rounded-r-full py-2.5 pl-8 font-semibold tracking-wide transition-colors',
+        'mb-1 flex w-full items-center gap-3 rounded-l-none rounded-r-full py-2.5 pl-8 pr-2 font-semibold tracking-wide transition-colors',
         {
           'bg-primary text-primary-foreground': isActive,
         },

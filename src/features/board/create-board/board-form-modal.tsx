@@ -7,15 +7,17 @@ import { Board } from '@/features/board/types/board.type'
 import { PlusIcon } from '@/icons'
 
 type Props = {
-  initialData?: Board
+  initialData?: Board | null
 }
 
 export default function BoardFormModalView({ initialData }: Props) {
   const { closeModal } = useModal()
+
+  const title = initialData ? 'Edit Board' : 'Create Board'
   return (
     <ModalContainer childrenClassName='p-4 md:p-6 md:w-[35rem]'>
       <div className='mb-4 flex justify-between md:mb-6'>
-        <h4 className='h4'> Demo Modal </h4>
+        <h4 className='h4'> {title} </h4>
         <button
           onClick={closeModal}
           aria-label='close modal'

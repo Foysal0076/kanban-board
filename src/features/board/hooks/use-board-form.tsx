@@ -13,7 +13,7 @@ import {
 import { useAuth } from '@/hooks/use-auth'
 import { generateID } from '@/utils'
 
-export const useBoardForm = (initialData?: Board) => {
+export const useBoardForm = (initialData?: Board | null) => {
   const { closeModal } = useModal()
   const { addNewBoard, editBoard } = useBoardStore()
   const { user } = useAuth()
@@ -43,8 +43,7 @@ export const useBoardForm = (initialData?: Board) => {
         ...data,
         updatedAt: new Date(),
       }
-      // editBoard(putData)
-      console.log(putData)
+      editBoard(putData)
       toast.success('Board updated successfully')
     } else {
       const postData: Board = {

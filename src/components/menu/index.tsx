@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import * as React from 'react'
 import {
   useCallback,
@@ -17,7 +18,7 @@ import useClickOutside from '@/hooks/use-click-outside'
 // 4. Close - attach the close method to children
 
 // TODO: cover more positions
-type Position = 'left' | 'right'
+type Position = 'left' | 'right' | 'center'
 
 const defaultRect: DOMRect = {
   left: 0,
@@ -59,6 +60,8 @@ export default function Menu({
   const [isShow, setIsShow] = useState(false)
   const [triggerRect, setTriggerRect] = useState(defaultRect)
 
+  const pathname = usePathname()
+
   const contextValue = {
     isShow,
     setIsShow,
@@ -66,6 +69,10 @@ export default function Menu({
     triggerRect,
     setTriggerRect,
   }
+
+  useEffect(() => {
+    setIsShow(false)
+  }, [pathname])
 
   return (
     <MenuContext.Provider value={contextValue}>{children}</MenuContext.Provider>
@@ -186,6 +193,9 @@ function getPopoverCoords(
   switch (position) {
     case 'left':
       left = triggerRect.left - offset - popoverRect.width
+      break
+    case 'center':
+      left = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2
       break
     case 'right':
     default:

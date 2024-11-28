@@ -12,6 +12,7 @@ import { Board } from '@/features/board/types/board.type'
 type BoardStoreType = {
   boards: Board[]
   activeBoard: Board | null
+  setActiveBoard: (_boardId: string) => void
   refreshBoardList: (_userId: string) => void
   addNewBoard: (_board: Board) => void
   archiveBoard: (_boardId: string) => void
@@ -21,7 +22,7 @@ type BoardStoreType = {
 }
 
 export const useBoardStore = create<BoardStoreType>()(
-  devtools((set, get, ...args) => ({
+  devtools((set, get, ..._args) => ({
     boards: [],
     activeBoard: null,
     refreshBoardList: (userId) => {
@@ -31,6 +32,10 @@ export const useBoardStore = create<BoardStoreType>()(
     getBoardById: (boardId: string) => {
       const board = get().boards.find((b) => b.id === boardId) ?? null
       return board
+    },
+    setActiveBoard: (boardId: string) => {
+      const board = get().boards.find((b) => b.id === boardId) ?? null
+      set({ activeBoard: board })
     },
     addNewBoard: (board) => {
       createBoard(board)
