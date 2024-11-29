@@ -11,7 +11,6 @@ import { SeedMockData } from '@/components/seed-mock-data'
 import NextThemeProvider from '@/components/theme/next-theme-provider'
 import { metaObject } from '@/config/site.config'
 import { AuthProvider } from '@/features/auth/auth-provider'
-import { Footer } from '@/features/footer'
 import Navbar from '@/features/navigation/navbar'
 
 const inter = Inter({
@@ -41,7 +40,7 @@ export default function RootLayout({
                 <Navbar />
                 <main>{children}</main>
               </div>
-              <Footer />
+              {/* <Footer /> */}
             </div>
             <Toaster position='top-center' reverseOrder={false} />
           </NextThemeProvider>

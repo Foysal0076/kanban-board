@@ -43,19 +43,16 @@ export default function BoardMenu() {
                 {activeBoard?.title}
               </h1>
               <CaretDownIcon
-                className={cn(
-                  'ml-1 h-6 w-6 transition-transform duration-300',
-                  {
-                    'rotate-180': isMenuOpen,
-                  }
-                )}
+                className={cn('ml-1 transition-transform duration-300', {
+                  'rotate-180': isMenuOpen,
+                })}
               />
             </button>
           </Menu.Trigger>
           <BoardSettingMenu />
         </div>
         <Menu.Content>
-          <div className='card flex flex-col py-4'>
+          <div className='card flex flex-col bg-popover py-4'>
             <div className='mb-4 pl-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
               Al Boards ({totalBoards})
             </div>

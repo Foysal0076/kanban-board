@@ -46,7 +46,7 @@ export default function Navbar() {
           <div>
             <BoardMenu />
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center gap-1'>
             <ThemeSwitch />
             <NavbarAuthMenu />
             {/* <div className='flex md:hidden'>

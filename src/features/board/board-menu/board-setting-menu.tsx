@@ -10,10 +10,11 @@ import { GearSixIcon } from '@/icons'
 
 export default function BoardSettingMenu() {
   const { openModal } = useModal()
-  const { activeBoard } = useBoardStore()
+  const { activeBoard, archiveBoard } = useBoardStore()
 
   const onConfirmDelete = () => {
-    console.log('delete')
+    if (!activeBoard) return
+    archiveBoard(activeBoard.id)
   }
 
   const openBoardFormModal = () =>
@@ -39,7 +40,7 @@ export default function BoardSettingMenu() {
         </button>
       </Menu.Trigger>
       <Menu.Content>
-        <div className='card flex flex-col gap-1 p-2'>
+        <div className='card flex flex-col gap-1 bg-popover p-2'>
           <Button size={'sm'} variant={'ghost'} onClick={openBoardFormModal}>
             Edit
           </Button>

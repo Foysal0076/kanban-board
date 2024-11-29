@@ -43,7 +43,7 @@ const NavbarAuthMenu = () => {
       </button>
       <menu
         aria-label='User menu'
-        className='md:pd-5 absolute right-0 top-full z-10 hidden rounded-md border bg-card py-1 shadow-sm group-hover:block'>
+        className='md:pd-5 absolute right-0 top-full z-10 hidden rounded-md border bg-popover py-1 text-popover-foreground shadow-sm group-hover:block'>
         <ul className='flex w-32 flex-col gap-1 py-1'>
           {/* <li
             role='button'

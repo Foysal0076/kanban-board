@@ -25,10 +25,12 @@ export default function DeleteModal({
   const _onClose = onClose || closeModal
 
   return (
-    <div className='card flex flex-col items-center gap-2.5 p-4 max-sm:w-[90vw] sm:w-[24rem]'>
+    <div className='card flex flex-col items-center gap-2.5 bg-popover p-4 max-sm:w-[90vw] sm:w-[24rem]'>
       <TrashIcon className='h-10 w-10 text-destructive' />
-      <h2 className='font-bold'>{titleText}</h2>
-      <p className='text-center text-muted-foreground'>{bodyText}</p>
+      <h2 className='font-bold md:text-lg'>{titleText}</h2>
+      <p className='text-center font-medium text-muted-foreground'>
+        {bodyText}
+      </p>
       <div className='mt-2 flex w-full gap-2'>
         <Button className='w-1/2' variant={'outline'} onClick={_onClose}>
           {cancelButtonText}
