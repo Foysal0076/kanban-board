@@ -1,10 +1,10 @@
 import BoardPageLayout from '@/features/board/board-page-layout'
-import TaskList from '@/features/board/tasks/task-list'
+import TaskBoard from '@/features/board/task/task-board'
 
 export default function Board() {
   return (
     <BoardPageLayout>
-      <TaskList />
+      <TaskBoard />
     </BoardPageLayout>
   )
 }

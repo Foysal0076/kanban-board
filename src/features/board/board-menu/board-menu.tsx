@@ -20,13 +20,13 @@ export default function BoardMenu() {
 
   const isMediumScreen = useMediaQuery('(min-width: 768px)')
 
-  if (!activeBoard?.title) return null
+  if (!activeBoard?.board?.title) return null
 
   if (isMediumScreen) {
     return (
       <div className='flex items-center gap-2'>
         <h1 className='text-lg font-semibold md:text-2xl'>
-          {activeBoard?.title}
+          {activeBoard.board.title}
         </h1>
         <BoardSettingMenu />
       </div>
@@ -34,35 +34,33 @@ export default function BoardMenu() {
   }
 
   return (
-    <>
-      <Menu preferredPosition='center'>
-        <div className='flex gap-2'>
-          <Menu.Trigger>
-            <button className='flex items-center' onClick={toggleMenu}>
-              <h1 className='text-lg font-semibold md:text-2xl'>
-                {activeBoard?.title}
-              </h1>
-              <CaretDownIcon
-                className={cn('ml-1 transition-transform duration-300', {
-                  'rotate-180': isMenuOpen,
-                })}
-              />
-            </button>
-          </Menu.Trigger>
-          <BoardSettingMenu />
-        </div>
-        <Menu.Content>
-          <div className='card flex flex-col bg-popover py-4'>
-            <div className='mb-4 pl-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
-              Al Boards ({totalBoards})
-            </div>
-            <BoardList />
-            <div className='mt-2'>
-              <SidebarCreateBoardAction />
-            </div>
+    <Menu preferredPosition='center'>
+      <div className='flex gap-2'>
+        <Menu.Trigger>
+          <button className='flex items-center' onClick={toggleMenu}>
+            <h1 className='text-lg font-semibold md:text-2xl'>
+              {activeBoard?.board?.title}
+            </h1>
+            <CaretDownIcon
+              className={cn('ml-1 transition-transform duration-300', {
+                'rotate-180': isMenuOpen,
+              })}
+            />
+          </button>
+        </Menu.Trigger>
+        <BoardSettingMenu />
+      </div>
+      <Menu.Content>
+        <div className='card flex flex-col bg-popover py-4'>
+          <div className='mb-4 pl-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground'>
+            Al Boards ({totalBoards})
           </div>
-        </Menu.Content>
-      </Menu>
-    </>
+          <BoardList />
+          <div className='mt-2'>
+            <SidebarCreateBoardAction />
+          </div>
+        </div>
+      </Menu.Content>
+    </Menu>
   )
 }

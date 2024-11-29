@@ -4,6 +4,7 @@ import ThemeSwitch from '@/components/theme/theme-switch'
 import { pageRoutes } from '@/config/page-routes'
 import NavbarAuthMenu from '@/features/auth/navbar-auth-menu'
 import { BoardMenu } from '@/features/board/board-menu'
+import CreateTaskCta from '@/features/board/task/create-task-cta'
 import { AppIcon } from '@/icons'
 
 export default function Navbar() {
@@ -47,6 +48,7 @@ export default function Navbar() {
             <BoardMenu />
           </div>
           <div className='flex items-center gap-1'>
+            <CreateTaskCta />
             <ThemeSwitch />
             <NavbarAuthMenu />
             {/* <div className='flex md:hidden'>

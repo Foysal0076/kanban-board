@@ -14,12 +14,12 @@ export default function BoardSettingMenu() {
 
   const onConfirmDelete = () => {
     if (!activeBoard) return
-    archiveBoard(activeBoard.id)
+    archiveBoard(activeBoard.board.id)
   }
 
   const openBoardFormModal = () =>
     openModal({
-      view: <BoardFormModalView initialData={activeBoard} />,
+      view: <BoardFormModalView initialData={activeBoard?.board} />,
     })
 
   const openArchiveBoardModal = () =>
