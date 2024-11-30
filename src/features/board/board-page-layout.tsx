@@ -14,7 +14,7 @@ export default function BoardPageLayout({ children }: { children: ReactNode }) {
     <div className='flex h-[calc(100vh-var(--navbar-height))] md:h-[calc(100vh-var(--navbar-height-md))]'>
       <div
         className={cn(
-          'ml-0 h-full w-[calc(var(--left-sidebar-width))] transition-all max-md:-ml-[calc(var(--left-sidebar-width))]',
+          'ml-0 h-full w-[calc(var(--left-sidebar-width))] min-w-[calc(var(--left-sidebar-width))] transition-all max-md:-ml-[calc(var(--left-sidebar-width))]',
           {
             '-ml-[calc(var(--left-sidebar-width))]': !isLeftSidebarOpen,
           }

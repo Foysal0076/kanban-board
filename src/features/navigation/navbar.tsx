@@ -10,12 +10,12 @@ import { AppIcon } from '@/icons'
 export default function Navbar() {
   return (
     <header
-      className='fixed top-0 z-40 flex h-[var(--navbar-height)] w-full items-center border-b bg-card backdrop-blur-md md:h-[var(--navbar-height-md)]'
+      className='fixed top-0 z-40 flex h-[var(--navbar-height)] w-full max-w-[100vw] items-center border-b bg-card backdrop-blur-md md:h-[var(--navbar-height-md)]'
       aria-label='Main navigation'>
       <nav
         className='flex h-full w-full items-center'
         aria-label='Main navigation'>
-        <div className='flex min-h-full items-center px-4 md:w-[calc(var(--left-sidebar-width))] md:border-r md:px-8'>
+        <div className='flex min-h-full items-center px-4 md:w-[calc(var(--left-sidebar-width))] md:min-w-[calc(var(--left-sidebar-width))] md:border-r md:px-8'>
           <Link href={pageRoutes.home}>
             {/* <Image
               src='/images/site-logo-light.svg'

@@ -77,6 +77,12 @@
     @apply m-0 box-border scroll-smooth border-border p-0 font-Inter antialiased;
   }
 
+  /* CSS Debugger */
+  * {
+    /* background: rgba(205, 254, 194, 0.07); */
+    /* background: rgba(241, 130, 141, 0.07); */
+  }
+
   body {
     @apply bg-background text-foreground;
   }

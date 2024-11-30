@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from 'react'
 import { useFieldArray } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -12,13 +13,16 @@ import {
   TaskSchema,
 } from '@/features/board/validators/task.schema'
 import { useAuth } from '@/hooks/use-auth'
+import { SelectOption } from '@/types/select-option'
 import { generateID } from '@/utils'
 
 export const useTaskForm = (initialData?: Task | null) => {
   const { closeModal } = useModal()
-  const { addNewTask, editTask } = useBoardStore()
+  const { addNewTask, editTask, refreshActiveBoard } = useBoardStore()
   const { user } = useAuth()
   const { activeBoard } = useBoardStore()
+
+  const [statusOptions, setStatusOptions] = useState<SelectOption[]>([])
 
   const {
     register,
@@ -81,7 +85,7 @@ export const useTaskForm = (initialData?: Task | null) => {
         subtasks,
       }
       addNewTask(postData)
-      console.log(postData)
+      refreshActiveBoard()
       toast.success('Task added successfully')
     }
     closeModal()
@@ -100,7 +104,19 @@ export const useTaskForm = (initialData?: Task | null) => {
     remove(index)
   }
 
+  useEffect(() => {
+    if (activeBoard?.board) {
+      const options = activeBoard.board.columns.map((column) => ({
+        label: column,
+        value: column,
+      }))
+      setStatusOptions(options)
+    }
+  }, [activeBoard])
+
   return {
+    statusOptions,
+    control,
     register,
     handleSubmit,
     errors,

@@ -1,7 +1,9 @@
 'use client'
 
+import { Controller } from 'react-hook-form'
+
 import { useModal } from '@/components/modal/use-modal'
-import { Button, Input, Textarea } from '@/components/ui'
+import { Button, Input, Select, Textarea } from '@/components/ui'
 import { useTaskForm } from '@/features/board/hooks/use-task.form'
 import { Task } from '@/features/board/types/task.type'
 import { PlusIcon } from '@/icons'
@@ -14,9 +16,11 @@ export default function TaskForm({ initialData }: Props) {
   const { closeModal } = useModal()
 
   const {
+    statusOptions,
     register,
     handleSubmit,
     errors,
+    control,
     fields,
     onSubmit,
     handleAddSubtask,
@@ -25,7 +29,7 @@ export default function TaskForm({ initialData }: Props) {
   console.log(errors)
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-6' noValidate>
-      <div className='space-y-2'>
+      <div className='space-y-4'>
         <Input required label='Title' {...register('title')} id='title' />
         {errors.title && (
           <p className='text-sm text-red-500'>{errors.title.message}</p>
@@ -76,12 +80,28 @@ export default function TaskForm({ initialData }: Props) {
           type='button'
           onClick={handleAddSubtask}
           variant='outline'
-          className='w-full'>
+          className='w-full bg-popover'>
           <span className='font-semibold'>
             {' '}
             <span className='text-xl'>+</span> Add Subtask
           </span>
         </Button>
+        <Controller
+          name='status'
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <Select
+              label='Status'
+              labelClassName='mb-1.5 block'
+              options={statusOptions}
+              value={value}
+              onChange={(selectedOption) => {
+                return onChange(selectedOption)
+              }}
+              errorMessage={errors.status?.message}
+            />
+          )}
+        />
       </div>
 
       <div className='flex justify-end gap-2'>

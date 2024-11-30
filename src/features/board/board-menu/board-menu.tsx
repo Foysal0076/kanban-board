@@ -18,14 +18,14 @@ export default function BoardMenu() {
 
   const totalBoards = useBoardStore((state) => state.boards.length)
 
-  const isMediumScreen = useMediaQuery('(min-width: 768px)')
+  const isMediumScreen = useMediaQuery('(min-width: 48rem)')
 
   if (!activeBoard?.board?.title) return null
 
   if (isMediumScreen) {
     return (
       <div className='flex items-center gap-2'>
-        <h1 className='text-lg font-semibold md:text-2xl'>
+        <h1 className='text-sm font-semibold md:text-2xl'>
           {activeBoard.board.title}
         </h1>
         <BoardSettingMenu />
@@ -38,7 +38,7 @@ export default function BoardMenu() {
       <div className='flex gap-2'>
         <Menu.Trigger>
           <button className='flex items-center' onClick={toggleMenu}>
-            <h1 className='text-lg font-semibold md:text-2xl'>
+            <h1 className='line-clamp-1 font-semibold md:text-2xl'>
               {activeBoard?.board?.title}
             </h1>
             <CaretDownIcon

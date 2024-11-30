@@ -16,10 +16,9 @@ export default function CreateTaskCta() {
   if (!user) return null
 
   return (
-    <Button className='rounded-full' onClick={handleOpenTaskForm}>
-      <span className='font-semibold'>
-        <span className='text-lg'>+</span> Add new Task
-      </span>
+    <Button className='rounded-full font-semibold' onClick={handleOpenTaskForm}>
+      <span className='text-lg sm:mr-0.5'>+</span>
+      <span className='font-semibold max-sm:hidden'>Add new Task</span>
     </Button>
   )
 }

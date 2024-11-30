@@ -30,6 +30,7 @@ type BoardStoreType = {
   addNewTask: (_task: Task) => void
   removeTask: (_taskId: string) => void
   editTask: (_task: Task) => void
+  refreshActiveBoard: () => void
 }
 
 export const useBoardStore = create<BoardStoreType>()(
@@ -40,6 +41,20 @@ export const useBoardStore = create<BoardStoreType>()(
     refreshBoardList: (userId) => {
       const boards = getUserBoards(userId)
       set({ boards })
+    },
+    refreshActiveBoard: () => {
+      if (get().activeBoard) {
+        const activeBoardId = get().activeBoard?.board?.id ?? ''
+        const tasks = getBoardTasks(activeBoardId)
+        const activeBoard = get().activeBoard ?? null
+        if (!activeBoard) return
+        set((state) => ({
+          activeBoard: {
+            board: activeBoard?.board,
+            tasks,
+          },
+        }))
+      }
     },
     getBoardById: (boardId: string) => {
       const board = get().boards.find((b) => b.id === boardId) ?? null
@@ -79,26 +94,28 @@ export const useBoardStore = create<BoardStoreType>()(
       set((state) => ({
         boards: state.boards.map((b) => (b.id === board.id ? board : b)),
       }))
-      //   useBoardStore.getState().refreshBoardList(board.owner
+      //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },
     addNewTask: (task) => {
       createTask(task)
       set((state) => ({ tasks: [...state.tasks, task] }))
-      //   useBoardStore.getState().refreshBoardList(board.owner
+      // update active board tasks
+
+      //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },
     removeTask: (taskId) => {
       deleteTask(taskId)
       set((state) => ({
         tasks: state.tasks.filter((task) => task.id !== taskId),
       }))
-      //   useBoardStore.getState().refreshBoardList(board.owner
+      //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },
     editTask: (task) => {
       updateTask(task)
       set((state) => ({
         tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
       }))
-      //   useBoardStore.getState().refreshBoardList(board.owner
+      //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },
   }))
 )

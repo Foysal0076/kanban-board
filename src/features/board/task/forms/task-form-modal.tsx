@@ -15,7 +15,9 @@ export default function TaskFormModalView({ initialData }: Props) {
 
   const title = initialData ? 'Edit Task' : 'Create Task'
   return (
-    <ModalContainer childrenClassName='p-4 md:p-6 md:w-[35rem]'>
+    <ModalContainer
+      childrenClassName='p-4 md:p-6 md:w-[35rem]'
+      className='overflow-y-visible'>
       <div className='mb-4 flex justify-between md:mb-6'>
         <h4 className='h4'> {title} </h4>
         <button
