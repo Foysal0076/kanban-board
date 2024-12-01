@@ -19,6 +19,7 @@ import { Task } from '@/features/board/types/task.type'
 type BoardStoreType = {
   boards: Board[]
   tasks: Task[]
+  selectedTask: Task | null
   activeBoard: { board: Board; tasks: Task[] } | null
   setActiveBoard: (_boardId: string) => void
   refreshBoardList: (_userId: string) => void
@@ -31,12 +32,14 @@ type BoardStoreType = {
   removeTask: (_taskId: string) => void
   editTask: (_task: Task) => void
   refreshActiveBoard: () => void
+  selectTask: (_task: Task) => void
 }
 
 export const useBoardStore = create<BoardStoreType>()(
   devtools((set, get, ..._args) => ({
     boards: [],
     tasks: [],
+    selectedTask: null,
     activeBoard: null,
     refreshBoardList: (userId) => {
       const boards = getUserBoards(userId)
@@ -55,6 +58,9 @@ export const useBoardStore = create<BoardStoreType>()(
           },
         }))
       }
+    },
+    selectTask: (task) => {
+      set({ selectedTask: task })
     },
     getBoardById: (boardId: string) => {
       const board = get().boards.find((b) => b.id === boardId) ?? null
@@ -108,12 +114,16 @@ export const useBoardStore = create<BoardStoreType>()(
       set((state) => ({
         tasks: state.tasks.filter((task) => task.id !== taskId),
       }))
+      get().refreshActiveBoard()
       //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },
     editTask: (task) => {
       updateTask(task)
       set((state) => ({
         tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
+      }))
+      set(() => ({
+        selectedTask: task,
       }))
       //   useBoardStore.getState().refreshBoardList(board.owner.id)
     },

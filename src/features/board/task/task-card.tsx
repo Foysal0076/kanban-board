@@ -4,7 +4,7 @@ import type { DraggableProvided } from '@hello-pangea/dnd'
 import React, { CSSProperties } from 'react'
 
 import { useModal } from '@/components/modal/use-modal'
-import TaskFormModalView from '@/features/board/task/forms/task-form-modal'
+import ViewTaskModalView from '@/features/board/task/view-task-modal-view'
 import { Task } from '@/features/board/types/task.type'
 import { cn } from '@/utils'
 
@@ -32,8 +32,8 @@ function TaskCard(props: Props) {
 
   const { openModal } = useModal()
 
-  const handleEditTaskModal = () => {
-    openModal({ view: <TaskFormModalView initialData={task} /> })
+  const handleOpenTaskModal = () => {
+    openModal({ view: <ViewTaskModalView task={task} /> })
   }
 
   return (
@@ -53,10 +53,10 @@ function TaskCard(props: Props) {
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
-          handleEditTaskModal()
+          handleOpenTaskModal()
         }
       }}
-      onClick={handleEditTaskModal}>
+      onClick={handleOpenTaskModal}>
       <h3 className='mb-2 font-bold'>{task.title}</h3>
       <p className='text-sm font-medium text-muted-foreground'>
         {getSubtaskDetails()}
