@@ -29,7 +29,7 @@ export default function TaskColumn({
 }: Props) {
   const count = tasks.length
   return (
-    <Draggable draggableId={title} index={index}>
+    <Draggable draggableId={title} index={index} isDragDisabled>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
         <div
           ref={provided.innerRef}
@@ -37,7 +37,7 @@ export default function TaskColumn({
           {...provided.dragHandleProps}
           className='flex flex-col'>
           <div
-            className={`mb-6 flex items-center gap-2 transition-colors duration-200 hover:bg-green-50`}>
+            className={`mb-6 flex items-center gap-2 transition-colors duration-200`}>
             <div
               className='h-3 w-3 rounded-full'
               style={{ backgroundColor: color ?? 'purple' }}

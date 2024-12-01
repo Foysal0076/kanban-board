@@ -41,9 +41,12 @@ export default function TaskBoard({
 
   useEffect(() => {
     if (activeBoard?.tasks) {
-      const groupedTasks = groupTasksByStatus(activeBoard.tasks)
+      const columnNames = activeBoard.board.columns.map(
+        (column) => column.title
+      )
+      const groupedTasks = groupTasksByStatus(activeBoard.tasks, columnNames)
       setColumns(groupedTasks)
-      setOrdered(Object.keys(groupedTasks))
+      setOrdered(columnNames)
     }
   }, [activeBoard])
 
@@ -114,7 +117,7 @@ export default function TaskBoard({
     },
     [columns, ordered]
   )
-
+  console.log(ordered, columns)
   const board = (
     <Droppable
       droppableId='board'
@@ -133,7 +136,7 @@ export default function TaskBoard({
               index={index}
               title={key}
               color={columnColorMap ? columnColorMap[key] : 'purple'}
-              tasks={columns[key]}
+              tasks={columns[key] ?? []}
               isScrollable={withScrollableColumns}
               isCombineEnabled={isCombineEnabled}
               useClone={useClone}
