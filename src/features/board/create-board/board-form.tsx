@@ -3,17 +3,17 @@
 import { useModal } from '@/components/modal/use-modal'
 import { Button, Input, Textarea } from '@/components/ui'
 import { useBoardForm } from '@/features/board/hooks/use-board-form'
-import { Board } from '@/features/board/types/board.type'
+import { BoardFormProps } from '@/features/board/types/borad-form-props'
 import { PlusIcon } from '@/icons'
 
-type Props = {
-  initialData?: Board | null
-}
-
-export default function BoardForm({ initialData }: Props) {
+export default function BoardForm({
+  initialData,
+  isAddColumnForm = false,
+}: BoardFormProps) {
   const { closeModal } = useModal()
 
   const {
+    existingColumnCount,
     register,
     handleSubmit,
     errors,
@@ -21,12 +21,18 @@ export default function BoardForm({ initialData }: Props) {
     onSubmit,
     handleAddOption,
     handleRemoveOption,
-  } = useBoardForm(initialData)
+  } = useBoardForm(initialData, isAddColumnForm)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-6' noValidate>
       <div className='space-y-2'>
-        <Input required label='Board Title' {...register('title')} id='title' />
+        <Input
+          required
+          label='Board Title'
+          {...register('title')}
+          id='title'
+          disabled={isAddColumnForm}
+        />
         {errors.title && (
           <p className='text-sm text-red-500'>{errors.title.message}</p>
         )}
@@ -35,6 +41,7 @@ export default function BoardForm({ initialData }: Props) {
           label='Board Description'
           rows={4}
           {...register('description')}
+          disabled={isAddColumnForm}
         />
       </div>
 
@@ -49,8 +56,9 @@ export default function BoardForm({ initialData }: Props) {
               <Input
                 className='h-8'
                 required
-                {...register(`columns.${index}`)}
-                placeholder={`Option ${index + 1}`}
+                {...register(`columns.${index}.title`)}
+                placeholder={`Column ${index + 1}`}
+                disabled={isAddColumnForm && index < existingColumnCount}
               />
               {errors.columns?.[index] && (
                 <p className='mt-1 text-sm text-red-500'>
@@ -63,6 +71,7 @@ export default function BoardForm({ initialData }: Props) {
               type='button'
               size='sm'
               variant='ghost'
+              disabled={isAddColumnForm && index < existingColumnCount}
               onClick={() => handleRemoveOption(index)}>
               <PlusIcon className='rotate-45 font-bold' />
             </Button>
@@ -77,7 +86,7 @@ export default function BoardForm({ initialData }: Props) {
           type='button'
           onClick={handleAddOption}
           variant='outline'
-          className='w-full'>
+          className='w-full bg-popover'>
           <span className='font-semibold'>
             {' '}
             <span className='text-xl'>+</span> Add Column

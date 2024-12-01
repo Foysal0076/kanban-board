@@ -118,7 +118,7 @@ export default function TaskList(props: Props): ReactElement {
       ) => (
         <div
           className={cn(
-            'flex w-[15.625rem] select-none flex-col rounded pb-0 transition-all duration-200',
+            'flex w-[17.5rem] grow select-none flex-col rounded pb-0 transition-all duration-200',
             { 'opacity-50': isDropDisabled },
             { 'bg-popover': dropSnapshot.isDraggingOver },
             { 'bg-card': dropSnapshot.draggingFromThisWith }

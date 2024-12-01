@@ -107,8 +107,8 @@ export const useTaskForm = (initialData?: Task | null) => {
   useEffect(() => {
     if (activeBoard?.board) {
       const options = activeBoard.board.columns.map((column) => ({
-        label: column,
-        value: column,
+        label: column.title,
+        value: column.title,
       }))
       setStatusOptions(options)
     }

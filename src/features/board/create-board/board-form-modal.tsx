@@ -3,14 +3,13 @@
 import ModalContainer from '@/components/modal/modal-container'
 import { useModal } from '@/components/modal/use-modal'
 import BoardForm from '@/features/board/create-board/board-form'
-import { Board } from '@/features/board/types/board.type'
+import { BoardFormProps } from '@/features/board/types/borad-form-props'
 import { PlusIcon } from '@/icons'
 
-type Props = {
-  initialData?: Board | null
-}
-
-export default function BoardFormModalView({ initialData }: Props) {
+export default function BoardFormModalView({
+  initialData,
+  isAddColumnForm,
+}: BoardFormProps) {
   const { closeModal } = useModal()
 
   const title = initialData ? 'Edit Board' : 'Create Board'
@@ -25,7 +24,7 @@ export default function BoardFormModalView({ initialData }: Props) {
           <PlusIcon className='h-6 w-6 rotate-45 text-inherit' />
         </button>
       </div>
-      <BoardForm initialData={initialData} />
+      <BoardForm initialData={initialData} isAddColumnForm={isAddColumnForm} />
     </ModalContainer>
   )
 }

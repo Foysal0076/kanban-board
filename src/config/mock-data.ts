@@ -1,3 +1,4 @@
+import { COLUMN_COLORS } from '@/config/constants'
 import { Board } from '@/features/board/types/board.type'
 import { Subtask } from '@/features/board/types/subtask.type'
 import { Task } from '@/features/board/types/task.type'
@@ -76,6 +77,21 @@ export const MOCK_USERS: User[] = [
   },
 ]
 
+const defaultColumns = [
+  {
+    title: 'Todo',
+    color: COLUMN_COLORS[0],
+  },
+  {
+    title: 'In Progress',
+    color: COLUMN_COLORS[1],
+  },
+  {
+    title: 'Completed',
+    color: COLUMN_COLORS[2],
+  },
+]
+
 export const MOCK_BOARDS: Board[] = [
   {
     id: '1',
@@ -83,7 +99,7 @@ export const MOCK_BOARDS: Board[] = [
     description: 'Platform launch Description',
     owner: MOCK_USERS[0],
     invitees: [MOCK_USERS[1], MOCK_USERS[2], MOCK_USERS[3]],
-    columns: ['To Do', 'In Progress', 'Done'],
+    columns: defaultColumns,
     createdAt: new Date('2023-01-01T10:00:00Z'),
     updatedAt: new Date('2023-01-02T10:00:00Z'),
   },
@@ -93,7 +109,7 @@ export const MOCK_BOARDS: Board[] = [
     description: 'Roadmap Description',
     owner: MOCK_USERS[0],
     invitees: [MOCK_USERS[3], MOCK_USERS[4], MOCK_USERS[5]],
-    columns: ['To Do', 'In Progress', 'Done'],
+    columns: defaultColumns,
     createdAt: new Date('2023-01-01T10:00:00Z'),
     updatedAt: new Date('2023-01-02T10:00:00Z'),
   },

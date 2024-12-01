@@ -5,9 +5,10 @@ import type {
   DropResult,
 } from '@hello-pangea/dnd'
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useBoardStore } from '@/features/board/store/board.store'
+import NewColumnPlaceholder from '@/features/board/task/new-column-placeholder'
 import TaskColumn from '@/features/board/task/task-column'
 import { Task } from '@/features/board/types/task.type'
 import { TaskMap } from '@/features/board/types/task-map.type'
@@ -43,6 +44,18 @@ export default function TaskBoard({
       const groupedTasks = groupTasksByStatus(activeBoard.tasks)
       setColumns(groupedTasks)
       setOrdered(Object.keys(groupedTasks))
+    }
+  }, [activeBoard])
+
+  const columnColorMap = useMemo(() => {
+    if (activeBoard?.board.columns) {
+      return activeBoard.board.columns.reduce(
+        (acc, column) => {
+          acc[column.title] = column.color
+          return acc
+        },
+        {} as Record<string, string>
+      )
     }
   }, [activeBoard])
 
@@ -119,6 +132,7 @@ export default function TaskBoard({
               key={key}
               index={index}
               title={key}
+              color={columnColorMap ? columnColorMap[key] : 'purple'}
               tasks={columns[key]}
               isScrollable={withScrollableColumns}
               isCombineEnabled={isCombineEnabled}
@@ -126,6 +140,7 @@ export default function TaskBoard({
             />
           ))}
           {provided.placeholder}
+          <NewColumnPlaceholder />
         </div>
       )}
     </Droppable>

@@ -10,6 +10,7 @@ import { Task } from '@/features/board/types/task.type'
 
 interface Props {
   title: string
+  color: string
   tasks: Task[]
   index: number
   isScrollable?: boolean
@@ -19,6 +20,7 @@ interface Props {
 
 export default function TaskColumn({
   title,
+  color,
   tasks,
   index,
   isScrollable,
@@ -36,7 +38,10 @@ export default function TaskColumn({
           className='flex flex-col'>
           <div
             className={`mb-6 flex items-center gap-2 transition-colors duration-200 hover:bg-green-50`}>
-            <div className='h-3 w-3 rounded-full bg-purple-400' />
+            <div
+              className='h-3 w-3 rounded-full'
+              style={{ backgroundColor: color ?? 'purple' }}
+            />
             <h2 className='text-sm font-semibold uppercase text-muted-foreground'>
               {title} ({count})
             </h2>
