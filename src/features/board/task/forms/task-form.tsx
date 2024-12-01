@@ -26,7 +26,8 @@ export default function TaskForm({ initialData }: Props) {
     handleAddSubtask,
     handleRemoveSubtask,
   } = useTaskForm(initialData)
-  console.log(errors)
+  // console.log(errors)
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-6' noValidate>
       <div className='space-y-4'>

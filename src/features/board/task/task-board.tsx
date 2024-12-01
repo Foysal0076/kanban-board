@@ -117,7 +117,7 @@ export default function TaskBoard({
     },
     [columns, ordered]
   )
-  console.log(ordered, columns)
+
   const board = (
     <Droppable
       droppableId='board'

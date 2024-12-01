@@ -21,7 +21,7 @@ export default function BoardPageLayout({ children }: { children: ReactNode }) {
         )}>
         <BoardListSidebar />
       </div>
-      <div className='grow'>{children}</div>
+      <div className='grow overflow-x-auto overflow-y-clip'>{children}</div>
       <div
         className={cn('fixed bottom-8 left-0 max-md:hidden', {
           hidden: isLeftSidebarOpen,

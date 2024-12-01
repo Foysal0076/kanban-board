@@ -37,6 +37,7 @@ export const useTaskForm = (initialData?: Task | null) => {
       subtasks: [],
     },
   })
+
   const onSubmit = (data: TaskFormInputs) => {
     if (!user || !activeBoard) return
     const boardId = activeBoard.board.id
@@ -44,10 +45,20 @@ export const useTaskForm = (initialData?: Task | null) => {
     const isEdit = !!initialData
 
     if (isEdit) {
-      const subtasks = data.subtasks.map((subtask, index) => ({
-        ...subtask,
-        ...initialData.subtasks[index],
-      }))
+      const subtasks = data.subtasks.map((subtask, index) => {
+        if (initialData?.subtasks[index]) {
+          return {
+            ...initialData.subtasks[index],
+            ...subtask,
+          }
+        }
+        return {
+          ...subtask,
+          id: generateID(),
+          taskId: initialData.id,
+          isCompleted: false,
+        }
+      })
 
       const putData: Task = {
         ...initialData,
@@ -55,8 +66,8 @@ export const useTaskForm = (initialData?: Task | null) => {
         subtasks: [...subtasks],
         updatedAt: new Date(),
       }
-      console.log(putData)
-      // editTask(putData)
+      editTask(putData)
+      refreshActiveBoard()
       toast.success('Task updated successfully')
     } else {
       const taskId = generateID()

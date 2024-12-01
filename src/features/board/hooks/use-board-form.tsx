@@ -38,7 +38,7 @@ export const useBoardForm = (
   isAddColumnForm?: boolean
 ) => {
   const { closeModal } = useModal()
-  const { addNewBoard, editBoard } = useBoardStore()
+  const { addNewBoard, editBoard, refreshActiveBoard } = useBoardStore()
   const { user } = useAuth()
   const [existingColumnCount, setExistingColumnCount] = useState<number>(
     initialData ? initialData.columns.length : 0
@@ -80,6 +80,7 @@ export const useBoardForm = (
         updatedAt: new Date(),
       }
       editBoard(putData)
+      refreshActiveBoard()
       toast.success('Board updated successfully')
     } else {
       let uniqueColumns = data.columns.filter(
@@ -114,7 +115,6 @@ export const useBoardForm = (
 
   const { fields, append, remove } = useFieldArray({
     control: control,
-    // @ts-ignore
     name: 'columns',
   })
 
