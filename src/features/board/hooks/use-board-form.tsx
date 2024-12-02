@@ -1,4 +1,7 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useFieldArray } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
@@ -6,6 +9,7 @@ import toast from 'react-hot-toast'
 
 import { useModal } from '@/components/modal/use-modal'
 import { COLUMN_COLORS } from '@/config/constants'
+import { pageRoutes } from '@/config/page-routes'
 import { useBoardStore } from '@/features/board/store/board.store'
 import { Board } from '@/features/board/types/board.type'
 import {
@@ -43,6 +47,8 @@ export const useBoardForm = (
   const [existingColumnCount, setExistingColumnCount] = useState<number>(
     initialData ? initialData.columns.length : 0
   )
+
+  const router = useRouter()
 
   const {
     register,
@@ -109,6 +115,7 @@ export const useBoardForm = (
       }
       addNewBoard(postData)
       toast.success('Board added successfully')
+      router.push(pageRoutes.board(postData.id))
     }
     closeModal()
   }

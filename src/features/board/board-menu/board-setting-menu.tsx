@@ -1,20 +1,28 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+
 import DeleteModal from '@/components/delete-modal'
 import Menu from '@/components/menu'
 import { useModal } from '@/components/modal/use-modal'
 import { Button } from '@/components/ui'
+import { pageRoutes } from '@/config/page-routes'
 import BoardFormModalView from '@/features/board/create-board/board-form-modal'
 import { useBoardStore } from '@/features/board/store/board.store'
 import { GearSixIcon } from '@/icons'
 
 export default function BoardSettingMenu() {
-  const { openModal } = useModal()
-  const { activeBoard, archiveBoard } = useBoardStore()
-
+  const { openModal, closeModal } = useModal()
+  const { activeBoard, archiveBoard, getFirstActiveBoard } = useBoardStore()
+  const router = useRouter()
   const onConfirmDelete = () => {
     if (!activeBoard) return
     archiveBoard(activeBoard.board.id)
+    const board = getFirstActiveBoard()
+    if (board) {
+      router.push(pageRoutes.board(board.id))
+      closeModal()
+    }
   }
 
   const openBoardFormModal = () =>
@@ -44,12 +52,12 @@ export default function BoardSettingMenu() {
           <Button size={'sm'} variant={'ghost'} onClick={openBoardFormModal}>
             Edit
           </Button>
-          <Button
+          {/* <Button
             size={'sm'}
             variant={'destructive'}
             onClick={openArchiveBoardModal}>
             Archive
-          </Button>
+          </Button> */}
         </div>
       </Menu.Content>
     </Menu>

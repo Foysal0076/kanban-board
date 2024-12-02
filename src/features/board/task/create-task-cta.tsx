@@ -1,5 +1,7 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+
 import { useModal } from '@/components/modal/use-modal'
 import { Button } from '@/components/ui'
 import TaskFormModalView from '@/features/board/task/forms/task-form-modal'
@@ -13,7 +15,10 @@ export default function CreateTaskCta() {
     openModal({ view: <TaskFormModalView /> })
   }
 
-  if (!user) return null
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  if (!user || isHome) return null
 
   return (
     <Button className='rounded-full font-semibold' onClick={handleOpenTaskForm}>

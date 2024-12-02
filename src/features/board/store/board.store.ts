@@ -33,6 +33,7 @@ type BoardStoreType = {
   editTask: (_task: Task) => void
   refreshActiveBoard: () => void
   selectTask: (_task: Task) => void
+  getFirstActiveBoard: () => Board | null
 }
 
 export const useBoardStore = create<BoardStoreType>()(
@@ -79,12 +80,12 @@ export const useBoardStore = create<BoardStoreType>()(
     },
     archiveBoard: (boardId) => {
       archiveBoard(boardId)
-      set((state) => ({
-        boards: state.boards.map((board) =>
-          board.id === boardId ? { ...board, isArchived: true } : board
-        ),
-      }))
-      //   useBoardStore.getState().refreshBoardList(board.owner.id)
+      // set((state) => ({
+      //   boards: state.boards.map((board) =>
+      //     board.id === boardId ? { ...board, isArchived: true } : board
+      //   ),
+      // }))
+      useBoardStore.getState().refreshBoardList(boardId)
     },
     unarchiveBoard: (boardId) => {
       archiveBoard(boardId)
@@ -93,7 +94,7 @@ export const useBoardStore = create<BoardStoreType>()(
           board.id === boardId ? { ...board, isArchived: false } : board
         ),
       }))
-      //   useBoardStore.getState().refreshBoardList(board.owner.id)
+      useBoardStore.getState().refreshBoardList(boardId)
     },
     editBoard: (board) => {
       updateBoard(board)
@@ -126,6 +127,15 @@ export const useBoardStore = create<BoardStoreType>()(
         selectedTask: task,
       }))
       //   useBoardStore.getState().refreshBoardList(board.owner.id)
+    },
+    getFirstActiveBoard: () => {
+      if (get().boards.length) {
+        const board = get().boards[0]
+        const tasks = getBoardTasks(board.id)
+        set({ activeBoard: { board, tasks } })
+        return board
+      }
+      return null
     },
   }))
 )

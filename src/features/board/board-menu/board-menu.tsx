@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 import Menu from '@/components/menu'
@@ -20,7 +21,10 @@ export default function BoardMenu() {
 
   const isMediumScreen = useMediaQuery('(min-width: 48rem)')
 
-  if (!activeBoard?.board?.title) return null
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
+  if (!activeBoard?.board?.title || isHome) return null
 
   if (isMediumScreen) {
     return (

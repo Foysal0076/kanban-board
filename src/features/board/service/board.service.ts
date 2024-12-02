@@ -10,8 +10,9 @@ export const getUserBoards = (userId: string): Board[] => {
   const boards = getAllBoards()
   return boards.filter(
     (board) =>
-      board.owner.id === userId ||
-      board.invitees.some((invitee) => invitee.id === userId)
+      (board.owner.id === userId ||
+        board.invitees.some((invitee) => invitee.id === userId)) &&
+      !board.isArchived
   )
 }
 

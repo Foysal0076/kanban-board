@@ -159,6 +159,16 @@ export default function TaskBoard({
 
   if (isLoading) return <PageLoader />
 
+  if (!activeBoard) {
+    return (
+      <div className='mt-20'>
+        <h1 className='h4 text-center'>
+          No board found! Create your first board
+        </h1>
+      </div>
+    )
+  }
+
   return (
     <>
       <DragDropContext
