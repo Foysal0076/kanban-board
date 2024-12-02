@@ -7,13 +7,19 @@ import type {
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
+import PageLoader from '@/components/page-loader'
+import { reorderTasks } from '@/features/board/service/task.service'
 import { useBoardStore } from '@/features/board/store/board.store'
 import NewColumnPlaceholder from '@/features/board/task/new-column-placeholder'
 import TaskColumn from '@/features/board/task/task-column'
 import { Task } from '@/features/board/types/task.type'
 import { TaskMap } from '@/features/board/types/task-map.type'
 import { groupTasksByStatus } from '@/features/board/utils/group-tasks'
-import reorder, { reorderTaskMap } from '@/features/board/utils/reorder-tasks'
+import reorder, {
+  getReorderedBoardTasks,
+  reorderTaskMap,
+} from '@/features/board/utils/reorder-tasks'
+import { useAuth } from '@/hooks/use-auth'
 import { PartialAutoScrollerOptions } from '@/types/auto-scroller-options-types'
 
 interface Props {
@@ -38,6 +44,8 @@ export default function TaskBoard({
   const [columns, setColumns] = useState<TaskMap>(initial)
   const [ordered, setOrdered] = useState<string[]>(Object.keys(initial))
   const { activeBoard } = useBoardStore()
+
+  const { isLoading } = useAuth()
 
   useEffect(() => {
     if (activeBoard?.tasks) {
@@ -89,7 +97,6 @@ export default function TaskBoard({
 
       const source: DraggableLocation = result.source
       const destination: DraggableLocation = result.destination
-
       if (
         source.droppableId === destination.droppableId &&
         source.index === destination.index
@@ -108,12 +115,13 @@ export default function TaskBoard({
       }
 
       const data = reorderTaskMap({
-        quoteMap: columns,
+        taskMap: columns,
         source,
         destination,
       })
-
-      setColumns(data.quoteMap)
+      const reOrderedBoardTasks = getReorderedBoardTasks(data.taskMap)
+      reorderTasks(reOrderedBoardTasks)
+      setColumns(data.taskMap)
     },
     [columns, ordered]
   )
@@ -149,6 +157,8 @@ export default function TaskBoard({
     </Droppable>
   )
 
+  if (isLoading) return <PageLoader />
+
   return (
     <>
       <DragDropContext
@@ -164,15 +174,6 @@ export default function TaskBoard({
           board
         )}
       </DragDropContext>
-      {/* {applyGlobalStyles ? (
-        <Global
-          styles={css`
-            body {
-              background: ${colors.B200};
-            }
-          `}
-        />
-      ) : null} */}
     </>
   )
 }

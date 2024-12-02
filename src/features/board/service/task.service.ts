@@ -6,6 +6,15 @@ export const getAllTasks = (): Task[] => {
   return getLocalStorage(STORAGE_KEYS.TASKS) || []
 }
 
+export const reorderTasks = (tasks: Task[]) => {
+  const filteredTasks = getAllTasks().filter((task) => {
+    return tasks.every((t) => t.id !== task.id)
+  })
+
+  const merged = [...filteredTasks, ...tasks]
+  setLocalStorage(STORAGE_KEYS.TASKS, merged)
+}
+
 export const getBoardTasks = (boardId: string) => {
   const tasks = getAllTasks()
   return tasks.filter((task) => task.boardId === boardId)

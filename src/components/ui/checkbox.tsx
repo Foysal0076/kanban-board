@@ -24,7 +24,7 @@ export const Checkbox = forwardRef<HTMLInputElement, RadioProps>(
           type='checkbox'
           id={`${id}_${_id}`}
           className={cn(
-            'h-4 w-4 border-border checked:bg-primary focus:ring-2 focus:ring-primary',
+            'h-4 w-4 border-border accent-primary checked:bg-primary focus:ring-2 focus:ring-primary',
             className
           )}
         />

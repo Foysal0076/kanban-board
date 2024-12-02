@@ -19,33 +19,35 @@ function reorder<TItem>(
 export default reorder
 
 interface ReorderTaskMapArgs {
-  quoteMap: TaskMap
+  taskMap: TaskMap
   source: DraggableLocation
   destination: DraggableLocation
 }
 
 export interface ReorderTaskMapResult {
-  quoteMap: TaskMap
+  taskMap: TaskMap
 }
 
 export const reorderTaskMap = ({
-  quoteMap,
+  taskMap,
   source,
   destination,
 }: ReorderTaskMapArgs): ReorderTaskMapResult => {
-  const current: Task[] = [...quoteMap[source.droppableId]]
-  const next: Task[] = [...quoteMap[destination.droppableId]]
-  const target: Task = current[source.index]
-
+  const current: Task[] = [...taskMap[source.droppableId]]
+  const next: Task[] = [...taskMap[destination.droppableId]]
+  const target: Task = {
+    ...current[source.index],
+    status: destination.droppableId,
+  }
   // moving to same list
   if (source.droppableId === destination.droppableId) {
     const reordered: Task[] = reorder(current, source.index, destination.index)
     const result: TaskMap = {
-      ...quoteMap,
+      ...taskMap,
       [source.droppableId]: reordered,
     }
     return {
-      quoteMap: result,
+      taskMap: result,
     }
   }
 
@@ -57,13 +59,13 @@ export const reorderTaskMap = ({
   next.splice(destination.index, 0, target)
 
   const result: TaskMap = {
-    ...quoteMap,
+    ...taskMap,
     [source.droppableId]: current,
     [destination.droppableId]: next,
   }
 
   return {
-    quoteMap: result,
+    taskMap: result,
   }
 }
 
@@ -109,4 +111,13 @@ export function moveBetween<T>({
       values: newSecond,
     },
   }
+}
+
+export const getReorderedBoardTasks = (taskMap: TaskMap) => {
+  const boarTasks = Object.values(taskMap).reduce((acc, tasks) => {
+    acc.push(...tasks)
+    return acc
+  }, [] as Task[])
+
+  return boarTasks
 }

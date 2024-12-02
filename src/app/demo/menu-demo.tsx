@@ -4,10 +4,10 @@ import { Button } from '@/components/ui'
 
 export default function MenuDemo() {
   const onDelete = () => {
-    console.log('delete')
+    // console.log('delete')
   }
   const onEdit = () => {
-    console.log('edit')
+    // console.log('edit')
   }
 
   return (
